@@ -76,7 +76,7 @@ function postMarkUp(post) {
             <div class="post__header">
                 <div class="post-meta">
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src="${post.author.image}" alt="${post.author.name}">
+                        <img class="profile-pic" src="${post.author.image}" alt="${getFirstLetters(post.author.name)}">
                     </div>
 
                     <div class="post-meta__data">
@@ -120,6 +120,15 @@ function postMarkUp(post) {
 
 
     return postMarkUp;
+}
+
+function getFirstLetters(string) {
+    const firstLetters = string
+        .split(' ')
+        .map(word => word.charAt(0))
+        .join('');
+
+    return firstLetters;
 }
 
 function like_funct() {
