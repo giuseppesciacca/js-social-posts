@@ -58,31 +58,17 @@ const posts = [
 
 const containerEl = document.getElementById('container');
 
+
 //for each element in array, create a post
 posts.forEach(post => {
     containerEl.innerHTML += postMarkUp(post);
+
 });
 
 //like ai post e i post piaciuti in un array
 const likeEl = document.querySelectorAll('.js-like-button')
-console.log(likeEl);
-const likedPost = [];
-likeEl.forEach(like => {
-    like.addEventListener('click', function (e) {
-        e.preventDefault()
-        like.classList.add('like-button--liked');
-        console.log('click');
-    })
-})
-
-
-
-
-
-
-
-
-
+const counterLikeEl = document.querySelectorAll('.js-likes-counter')
+like_funct()
 
 /* FUNCTIONS */
 function postMarkUp(post) {
@@ -135,4 +121,23 @@ function postMarkUp(post) {
 
 
     return postMarkUp;
+}
+
+function like_funct() {
+    let likedPost = [];
+    likeEl.forEach((like, index) => {
+        like.addEventListener('click', function (e) {
+            e.preventDefault()
+
+            like.classList.toggle('like-button--liked');
+
+            if (like.classList.contains('like-button--liked')) {
+                likedPost.push(index + 1);
+            } else if (!like.classList.contains('like-button--liked')) {
+                delete likedPost[index]
+            }
+            //rimuove gli spazi vuoti dall'array
+            console.log(likedPost.filter(n => n));
+        })
+    })
 }
