@@ -35,7 +35,7 @@ const posts = [
     {
         "id": 4,
         "content": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
-        "media": "https://unsplash.it/600/400?image=24",
+        "media": null,
         "author": {
             "name": "Luca Formicola",
             "image": null
@@ -59,9 +59,30 @@ const posts = [
 const containerEl = document.getElementById('container');
 
 //for each element in array, create a post
-posts.forEach((post) => {
+posts.forEach(post => {
     containerEl.innerHTML += postMarkUp(post);
 });
+
+//like ai post e i post piaciuti in un array
+const likeEl = document.querySelectorAll('.js-like-button')
+console.log(likeEl);
+const likedPost = [];
+likeEl.forEach(like => {
+    like.addEventListener('click', function (e) {
+        e.preventDefault()
+        like.classList.add('like-button--liked');
+        console.log('click');
+    })
+})
+
+
+
+
+
+
+
+
+
 
 /* FUNCTIONS */
 function postMarkUp(post) {
