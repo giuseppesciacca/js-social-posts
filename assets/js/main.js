@@ -59,8 +59,12 @@ const posts = [
 const containerEl = document.getElementById('container');
 
 //for each element in array, create a post
-posts.forEach((post, index) => {
-    console.log(post, index);
+posts.forEach((post) => {
+    containerEl.innerHTML += postMarkUp(post);
+});
+
+/* FUNCTIONS */
+function postMarkUp(post) {
     const postMarkUp = `
     <div class="post" id="${post.id}">
             <div class="post__header">
@@ -108,5 +112,6 @@ posts.forEach((post, index) => {
     </div>
     <!-- ./container -->`;
 
-    containerEl.innerHTML += postMarkUp;
-});
+
+    return postMarkUp;
+}
