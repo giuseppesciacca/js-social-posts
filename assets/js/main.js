@@ -55,3 +55,58 @@ const posts = [
         "created": "2021-03-05"
     }
 ];
+
+const containerEl = document.getElementById('container');
+
+//for each element in array, create a post
+posts.forEach((post, index) => {
+    console.log(post, index);
+    const postMarkUp = `
+    <div class="post" id="${post.id}">
+            <div class="post__header">
+                <div class="post-meta">
+                    <div class="post-meta__icon">
+                        <img class="profile-pic" src="${post.author.image}" alt="${post.author.name}">
+                    </div>
+
+                    <div class="post-meta__data">
+                        <div class="post-meta__author">${post.author.name}</div>
+                        <div class="post-meta__time">${post.created}</div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./post__header-->
+
+            <div class="post__text"> 
+               ${post.content}
+            </div>
+            <!-- ./post__text-->
+
+            <div class="post__image">
+                <img src="${post.media}" alt="">
+            </div>
+            <!-- ./post__image-->
+
+            <div class="post__footer">
+                <div class="likes js-likes">
+                    <div class="likes__cta">
+                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                            <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                            <span class="like-button__label">Mi Piace</span>
+                        </a>
+                    </div>
+
+                    <div class="likes__counter">
+                        Piace a <b id="like-counter-1" class="js-likes-counter">${post.likes}</b> persone
+                    </div>
+                </div>
+                <!-- ./likes js-likes -->
+            </div>
+            <!-- ./post__footer -->
+        </div>
+        <!-- ./post -->
+    </div>
+    <!-- ./container -->`;
+
+    containerEl.innerHTML += postMarkUp;
+});
