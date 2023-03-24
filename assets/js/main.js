@@ -8,7 +8,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=15"
         },
         "likes": 80,
-        "created": "06-25-2021"
+        "created": "2021-06-25"
     },
     {
         "id": 2,
@@ -19,7 +19,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=10"
         },
         "likes": 120,
-        "created": "09-03-2021"
+        "created": "2021-06-25"
     },
     {
         "id": 3,
@@ -30,7 +30,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=20"
         },
         "likes": 78,
-        "created": "05-15-2021"
+        "created": "2021-15-05"
     },
     {
         "id": 4,
@@ -41,7 +41,7 @@ const posts = [
             "image": null
         },
         "likes": 56,
-        "created": "04-03-2021"
+        "created": "2021-04-03"
     },
     {
         "id": 5,
@@ -52,7 +52,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=29"
         },
         "likes": 95,
-        "created": "05-03-2021"
+        "created": "2021-05-03"
     }
 ];
 
@@ -62,7 +62,6 @@ const containerEl = document.getElementById('container');
 //for each element in array, create a post
 posts.forEach(post => {
     containerEl.innerHTML += postMarkUp(post);
-
 });
 
 //like ai post e i post piaciuti in un array
@@ -73,7 +72,7 @@ like_funct()
 /* FUNCTIONS */
 function postMarkUp(post) {
     const postMarkUp = `
-    <div class="post" id="${post.id}">
+    <div class="post" id="">
             <div class="post__header">
                 <div class="post-meta">
                     <div class="post-meta__icon">
@@ -82,7 +81,7 @@ function postMarkUp(post) {
 
                     <div class="post-meta__data">
                         <div class="post-meta__author">${post.author.name}</div>
-                        <div class="post-meta__time">${post.created}</div>
+                        <div class="post-meta__time">${new Date(post.created).toLocaleDateString("en-GB")}</div>
                     </div>
                 </div>
             </div>
@@ -125,6 +124,7 @@ function postMarkUp(post) {
 
 function like_funct() {
     let likedPost = [];
+    let num = 0;
     likeEl.forEach((like, index) => {
         like.addEventListener('click', function (e) {
             e.preventDefault()
@@ -133,11 +133,14 @@ function like_funct() {
 
             if (like.classList.contains('like-button--liked')) {
                 likedPost.push(index + 1);
+                num++
             } else if (!like.classList.contains('like-button--liked')) {
                 delete likedPost[index]
             }
             //rimuove gli spazi vuoti dall'array
-            console.log(likedPost.filter(n => n));
+            const newLikedPost = likedPost.filter(n => n)
+            console.log(newLikedPost);
+            console.log(num);
         })
     })
 }
