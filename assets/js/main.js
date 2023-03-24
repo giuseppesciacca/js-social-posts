@@ -8,7 +8,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=15"
         },
         "likes": 80,
-        "created": "2021-06-25"
+        "created": "06-25-2021"
     },
     {
         "id": 2,
@@ -19,7 +19,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=10"
         },
         "likes": 120,
-        "created": "2021-09-03"
+        "created": "09-03-2021"
     },
     {
         "id": 3,
@@ -30,7 +30,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=20"
         },
         "likes": 78,
-        "created": "2021-05-15"
+        "created": "05-15-2021"
     },
     {
         "id": 4,
@@ -41,7 +41,7 @@ const posts = [
             "image": null
         },
         "likes": 56,
-        "created": "2021-04-03"
+        "created": "04-03-2021"
     },
     {
         "id": 5,
@@ -52,7 +52,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=29"
         },
         "likes": 95,
-        "created": "2021-03-05"
+        "created": "05-03-2021"
     }
 ];
 
