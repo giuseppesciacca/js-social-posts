@@ -58,15 +58,14 @@ const posts = [
 
 const containerEl = document.getElementById('container');
 
-
 //for each element in array, create a post
 posts.forEach(post => {
     containerEl.innerHTML += postMarkUp(post);
 });
 
-//like ai post e i post piaciuti in un array
-const likeEl = document.querySelectorAll('.js-like-button')
-const counterLikeEl = document.querySelectorAll('.js-likes-counter')
+//like ai post + i post piaciuti in un array
+const likesBtnEl = document.querySelectorAll('.js-like-button');
+const likedPost = [];
 like_funct()
 
 /* FUNCTIONS */
@@ -132,24 +131,30 @@ function getFirstLetters(string) {
 }
 
 function like_funct() {
-    let likedPost = [];
-    let num = 0;
-    likeEl.forEach((like, index) => {
+    likesBtnEl.forEach(like => {
         like.addEventListener('click', function (e) {
             e.preventDefault()
+            //prende l'id del post cliccato
+            const dataPostId = like.getAttribute("data-postid");
+            //prende l'elemento counter a seconda dell'id cliccato
+            const likeCounterId = document.getElementById(`like-counter-${dataPostId}`);
+            //console.log(dataPostId);
+            //console.log(likeCounterId);
 
+            //colora btn se cliccato, scolora se ricliccato
             like.classList.toggle('like-button--liked');
 
+            //se il btn ha la classe (quindi è stato cliccato), aggiungi +1 al counter, altrimenti se lo riclicca toglilo. +pusha nella lista o rimuovilo
             if (like.classList.contains('like-button--liked')) {
-                likedPost.push(index + 1);
-                num++
-            } else if (!like.classList.contains('like-button--liked')) {
-                delete likedPost[index]
+                likeCounterId.innerHTML = parseInt(likeCounterId.innerHTML) + 1;
+                likedPost.push(dataPostId);
+            } else {
+                likeCounterId.innerHTML = parseInt(likeCounterId.innerHTML) - 1;
+                //non sapendo l'index nell'array lo trovo con il metodo indexOf, che ritorna -1 se non è presente;
+                let idx = likedPost.indexOf(dataPostId);
+                if (idx != -1) likedPost.splice(idx, 1);
             }
-            //rimuove gli spazi vuoti dall'array
-            const newLikedPost = likedPost.filter(n => n)
-            console.log(newLikedPost);
-            console.log(num);
+            console.log(likedPost);
         })
     })
 }
