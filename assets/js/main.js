@@ -121,13 +121,12 @@ function postMarkUp(post) {
     return postMarkUp;
 }
 
-function getFirstLetters(string) {
-    const firstLetters = string
-        .split(' ')
-        .map(word => word.charAt(0))
-        .join('');
+function getFirstLetters(fullName) {
+    const firstLetterArray = fullName.split(' ').map((word) => {
+        return word.charAt(0)
+    });
 
-    return firstLetters;
+    return firstLetterArray.join('').toUpperCase()
 }
 
 function like_funct() {
